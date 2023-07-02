@@ -1,0 +1,3 @@
+*.Dart linguist-detectable=true
+*.Swift linguist-detectable=true
+*.Kotlin linguist-detectable=true
