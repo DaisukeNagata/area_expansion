@@ -1,18 +1,26 @@
-# area_expansion
+# AreaExpansion
+<p align="center">
+<img src="https://github.com/DaisukeNagata/area_expansion/assets/16457165/981f3f5c-edce-4bec-b5aa-97f127a66ee8)">
+</p>
 
-A new Flutter plugin project.
 
-## Getting Started
+# Support Licence　
+![iOS](https://img.shields.io/badge/OS-iOS-red) 
+![Android](https://img.shields.io/badge/OS-Android-green) 
+![Windows](https://img.shields.io/badge/OS-Windows-blue) 
+![macOS](https://img.shields.io/badge/OS-macOS-lightgrey) 
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://github.com/yourusername/your-repo-name/blob/main/LICENSE)
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
 
-The plugin project was generated without specifying the `--platforms` flag, no platforms are currently supported.
-To add platforms, run `flutter create -t plugin --platforms <platforms> .` in this directory.
-You can also find a detailed instruction on how to add platforms in the `pubspec.yaml` at https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms.
+
+# Image
+
+<div align="center">
+
+| | |
+|---|---|
+|<img width="375" src="https://github.com/DaisukeNagata/area_expansion/assets/16457165/fcb633ab-9125-4c6e-b340-a1c3a4889e73">|<img width="375" src="https://github.com/DaisukeNagata/area_expansion/assets/16457165/143217f8-c22c-444d-808a-d6584d46cb49">|
+
+</div>
+
