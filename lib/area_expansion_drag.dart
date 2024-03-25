@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:area_expansion/area_expansion_create.dart';
 import 'package:area_expansion/area_expansion_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -15,7 +16,7 @@ class AreaExpansionDrag extends StatefulWidget {
     required this.rect,
     required this.child,
   });
-  final Function(Uint8List, Rect) call;
+  final Function(AreaExpansionCreate, Uint8List, Rect, String) call;
   final double minimumValue;
   final bool trimFlg;
   final String imagePath;
@@ -280,8 +281,14 @@ class _AreaExpansionDragState extends State<AreaExpansionDrag> {
                 rightWidth,
                 bottomHeight,
               ),
-              call: (p0, p1) {
-                widget.call(p0, p1);
+              call: (p0, p1) async {
+                var areaExpansionCreate = AreaExpansionCreate();
+
+                var path = await areaExpansionCreate.createAndSaveCroppedImage(
+                  p1,
+                  p0,
+                );
+                widget.call(areaExpansionCreate, p0, p1, path);
               },
             ),
 

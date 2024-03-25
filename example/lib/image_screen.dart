@@ -1,33 +1,50 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:area_expansion_example/create_image_screen.dart';
 
 class ImageScreen extends StatelessWidget {
   const ImageScreen({
     super.key,
     required this.imageBytes,
     required this.rect,
+    required this.path,
   });
 
   final Uint8List imageBytes;
   final Rect rect;
+  final String path;
 
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
-    // Calculate how much the width should be scaled.
     double widthScale = deviceSize.width / rect.width;
-    // Calculates how much the height needs to be scaled.
     double heightScale = deviceSize.height / rect.height;
-    // The image is scaled to fit either the width or height of the device, preserving the aspect ratio.
     double scale = widthScale < heightScale ? widthScale : heightScale;
+
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Image Preview'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.popUntil(context, (route) => route.isFirst);
-          },
+          onPressed: () =>
+              Navigator.popUntil(context, (route) => route.isFirst),
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.image),
+            onPressed: () {
+              // ここで画像表示画面に遷移する
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CreateImageScreen(
+                          path: path,
+                          rect: rect,
+                        )),
+              );
+            },
+          ),
+        ],
       ),
       body: Center(
         child: Transform.scale(

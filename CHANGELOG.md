@@ -9,3 +9,11 @@
 ## 0.0.3
 
 * add: version 0.0.3 (update licence, homepage url)
+
+## 0.0.4
+
+* refactor MyApp
+
+## 0.0.5
+
+* add: create image function

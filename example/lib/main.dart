@@ -60,7 +60,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 ),
               ),
             ),
-            call: (p0, p1) {
+            call: (areaExpansionCreate, p0, p1, path) {
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
@@ -87,9 +87,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 builder: (context) => ImageScreen(
                                   imageBytes: p0,
                                   rect: p1,
+                                  path: path,
                                 ),
                               ),
-                            )).then((_) {
+                            )).then((_) async {
+                          await areaExpansionCreate.clearImage();
                           setState(() {
                             _isClipped = true;
                           });
