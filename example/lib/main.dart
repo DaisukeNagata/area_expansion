@@ -31,95 +31,98 @@ class _HomeWidgetState extends State<HomeWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('AreaExpansion'),
-      ),
-      body: Stack(
-        children: [
-          if (_isClipped)
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(_path),
-                  fit: BoxFit.cover,
+        appBar: AppBar(
+          title: const Text('AreaExpansion'),
+        ),
+        body: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.width,
+          child: Stack(
+            children: [
+              if (_isClipped)
+                Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(_path),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
-              ),
-            ),
 
-          AreaExpansionDrag(
-            trimFlg: _isClipped,
-            imagePath: _path,
-            backColor: Colors.black.withOpacity(0.5),
-            rect: const Rect.fromLTRB(100, 200, 100, 200),
-            minimumValue: 5,
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.white,
-                  width: 1.0,
-                ),
-              ),
-            ),
-            call: (areaExpansionCreate, p0, p1, path) {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: const Text('Navigate?'),
-                  content: const Text(
-                      'Do you want to navigate to the image screen?'),
-                  actions: [
-                    TextButton(
-                      child: const Text('No'),
-                      onPressed: () {
-                        Navigator.pop(context);
-                        setState(() {
-                          _isClipped = true;
-                        });
-                      },
+              AreaExpansionDrag(
+                trimFlg: _isClipped,
+                imagePath: _path,
+                backColor: Colors.black.withOpacity(0.5),
+                rect: const Rect.fromLTRB(100, 200, 100, 200),
+                minimumValue: 5,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 1.0,
                     ),
-                    TextButton(
-                      child: const Text('Yes'),
-                      onPressed: () {
-                        Navigator.pop(context);
-                        Future(() => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ImageScreen(
-                                  imageBytes: p0,
-                                  rect: p1,
-                                  path: path,
-                                ),
-                              ),
-                            )).then((_) async {
-                          await areaExpansionCreate.clearImage();
-                          setState(() {
-                            _isClipped = true;
-                          });
-                        });
-                      },
-                    ),
-                  ],
+                  ),
                 ),
-              );
-            },
-          ),
-          // Button
-          Padding(
-            padding: const EdgeInsets.only(bottom: 20),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    _isClipped = !_isClipped;
-                  });
+                call: (areaExpansionCreate, p0, p1, path) {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('Navigate?'),
+                      content: const Text(
+                          'Do you want to navigate to the image screen?'),
+                      actions: [
+                        TextButton(
+                          child: const Text('No'),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            setState(() {
+                              _isClipped = true;
+                            });
+                          },
+                        ),
+                        TextButton(
+                          child: const Text('Yes'),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Future(() => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ImageScreen(
+                                      imageBytes: p0,
+                                      rect: p1,
+                                      path: path,
+                                    ),
+                                  ),
+                                )).then((_) async {
+                              await areaExpansionCreate.clearImage();
+                              setState(() {
+                                _isClipped = true;
+                              });
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  );
                 },
-                child: const Text('Expansion'),
               ),
-            ),
+              // Button
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _isClipped = !_isClipped;
+                      });
+                    },
+                    child: const Text('Expansion'),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
+        ));
   }
 }

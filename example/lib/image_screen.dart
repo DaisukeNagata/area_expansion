@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:area_expansion_example/create_image_screen.dart';
+import 'package:share/share.dart';
 
 class ImageScreen extends StatelessWidget {
   const ImageScreen({
@@ -13,6 +14,10 @@ class ImageScreen extends StatelessWidget {
   final Uint8List imageBytes;
   final Rect rect;
   final String path;
+
+  void _shareImage() {
+    Share.shareFiles([path], text: 'Check out this image!');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +35,10 @@ class ImageScreen extends StatelessWidget {
               Navigator.popUntil(context, (route) => route.isFirst),
         ),
         actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.share),
+            onPressed: () => _shareImage(),
+          ),
           IconButton(
             icon: const Icon(Icons.image),
             onPressed: () {
