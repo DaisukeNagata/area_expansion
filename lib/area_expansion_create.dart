@@ -6,8 +6,6 @@ import 'package:image/image.dart' as img;
 import 'package:path_provider/path_provider.dart';
 
 class AreaExpansionCreate {
-  String clearPath = '';
-
   Future<String> createAndSaveCroppedImage(
     Rect rect,
     Uint8List imageBytes,
@@ -15,7 +13,6 @@ class AreaExpansionCreate {
     // Load the original image
     img.Image? originalImage = img.decodeImage(imageBytes);
     if (originalImage != null) {
-      // 画像の幅と高さを取得
       int width = originalImage.width;
       int height = originalImage.height;
 
@@ -30,7 +27,6 @@ class AreaExpansionCreate {
       String path = (await getTemporaryDirectory()).path;
       File file = File('$path/cropped_image.png');
       await file.writeAsBytes(croppedImageBytes);
-      clearPath = '$path/cropped_image.png';
       return '$path/cropped_image.png';
     }
     return '';

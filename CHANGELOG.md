@@ -17,3 +17,7 @@
 ## 0.0.5
 
 * add: create image function
+
+## 0.0.6
+
+* add: refactor
