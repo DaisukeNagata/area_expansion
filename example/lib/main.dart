@@ -26,6 +26,7 @@ class HomeWidget extends StatefulWidget {
 
 class _HomeWidgetState extends State<HomeWidget> {
   bool _isClipped = true;
+  double _zoomScale = 1.0; // ズームレベルを管理する変数
   final String _path = 'assets/exam.jpg';
 
   @override
@@ -54,6 +55,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 imagePath: _path,
                 backColor: Colors.black.withOpacity(0.5),
                 rect: const Rect.fromLTRB(100, 200, 100, 200),
+                scale: _zoomScale,
                 minimumValue: 5,
                 child: Container(
                   decoration: BoxDecoration(
@@ -106,19 +108,35 @@ class _HomeWidgetState extends State<HomeWidget> {
                   );
                 },
               ),
+
               // Button
               Padding(
                 padding: const EdgeInsets.only(bottom: 20),
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        _isClipped = !_isClipped;
-                      });
-                    },
-                    child: const Text('Expansion'),
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Slider(
+                      min: 1.0, // 最小ズームレベル
+                      max: 5.0, // 最大ズームレベル
+                      value: _zoomScale,
+                      onChanged: (value) {
+                        setState(() {
+                          _zoomScale = value; // スライダーの値でズームレベルを更新
+                        });
+                      },
+                    ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            _isClipped = !_isClipped;
+                          });
+                        },
+                        child: const Text('Expansion'),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

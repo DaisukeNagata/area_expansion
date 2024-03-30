@@ -29,3 +29,7 @@
 ## 0.1.0
 
 * add: created only the image area during image creation.
+
+## 0.1.1
+
+* add: zoom function

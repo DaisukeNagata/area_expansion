@@ -14,6 +14,7 @@ class AreaExpansionDrag extends StatefulWidget {
     required this.imagePath,
     required this.backColor,
     required this.rect,
+    required this.scale,
     required this.child,
   });
   final Function(AreaExpansionCreate, Uint8List, Rect, String) call;
@@ -22,6 +23,7 @@ class AreaExpansionDrag extends StatefulWidget {
   final String imagePath;
   final Color backColor;
   final Rect rect;
+  final double scale;
   final Widget child;
   @override
   State<AreaExpansionDrag> createState() => _AreaExpansionDragState();
@@ -291,9 +293,10 @@ class _AreaExpansionDragState extends State<AreaExpansionDrag> {
                 var areaExpansionCreate = AreaExpansionCreate();
 
                 var path = await areaExpansionCreate.createAndSaveCroppedImage(
-                  imageBytes,
-                  rect,
-                );
+                    imageBytes,
+                    rect,
+                    Size(
+                        rect.width * widget.scale, rect.height * widget.scale));
                 widget.call(areaExpansionCreate, imageBytes, rect, path);
               },
             ),

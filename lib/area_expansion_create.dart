@@ -9,6 +9,7 @@ class AreaExpansionCreate {
   Future<String> createAndSaveCroppedImage(
     Uint8List imageBytes,
     Rect rect,
+    Size size,
   ) async {
     // Load the original image
     img.Image? originalImage = img.decodeImage(imageBytes);
@@ -23,12 +24,15 @@ class AreaExpansionCreate {
       );
 
       // Encode the new image as PNG
-      List<int> croppedImageBytes = img.encodePng(croppedImage);
+      // List<int> croppedImageBytes = img.encodePng(croppedImage);
+      img.Image resizedImage = img.copyResize(croppedImage,
+          width: size.width.toInt(), height: size.height.toInt());
 
+      List<int> resizedImageBytes = img.encodePng(resizedImage);
       // Save the image to a file
       String path = (await getTemporaryDirectory()).path;
       File file = File('$path/cropped_image.png');
-      await file.writeAsBytes(croppedImageBytes);
+      await file.writeAsBytes(resizedImageBytes);
       return '$path/cropped_image.png';
     }
     return '';
