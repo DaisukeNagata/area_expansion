@@ -12,7 +12,7 @@ class AreaExpansionWidget extends StatefulWidget {
     required this.imagePath,
     required this.rect,
   });
-  final Function(Uint8List, Rect) call;
+  final Function(Uint8List) call;
   final bool trimFlg;
   final String imagePath;
   final Rect rect;
@@ -62,28 +62,6 @@ class _RectClipperState extends State<AreaExpansionWidget> {
     // Convert ByteData to Uint8List
     Uint8List pngBytes = byteData!.buffer.asUint8List();
 
-    // original image size
-    final Size imageSize = Size(
-        deviceSize.width - (widget.rect.left + widget.rect.right),
-        deviceSize.height - (widget.rect.top + widget.rect.bottom));
-
-    // Calculate offset to move to center
-    final Offset offset = Offset(
-      (widget.rect.left).abs(),
-      (widget.rect.top).abs(),
-    );
-
-    // Calculate the center coordinates of the image.
-    Offset imageCenter = Offset(
-        offset.dx + imageSize.width / 2, offset.dy + imageSize.height / 2);
-    // Calculate the center coordinates of the device
-    Offset deviceCenter = Offset(deviceSize.width / 2, deviceSize.height / 2);
-    // Calculate an offset to move the image to the center of the device
-    Offset moveToCenter = Offset(
-        deviceCenter.dx - imageCenter.dx, deviceCenter.dy - imageCenter.dy);
-    widget.call(
-        pngBytes,
-        Rect.fromLTWH(moveToCenter.dx, moveToCenter.dy, imageSize.width,
-            imageSize.height));
+    widget.call(pngBytes);
   }
 }

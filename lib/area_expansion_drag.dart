@@ -281,14 +281,20 @@ class _AreaExpansionDragState extends State<AreaExpansionDrag> {
                 rightWidth,
                 bottomHeight,
               ),
-              call: (p0, p1) async {
+              call: (imageBytes) async {
+                Rect rect = Rect.fromLTWH(
+                  leftWidth,
+                  topHeight,
+                  constraints.maxWidth - (leftWidth + rightWidth),
+                  constraints.maxHeight - (bottomHeight + topHeight),
+                );
                 var areaExpansionCreate = AreaExpansionCreate();
 
                 var path = await areaExpansionCreate.createAndSaveCroppedImage(
-                  p1,
-                  p0,
+                  imageBytes,
+                  rect,
                 );
-                widget.call(areaExpansionCreate, p0, p1, path);
+                widget.call(areaExpansionCreate, imageBytes, rect, path);
               },
             ),
 

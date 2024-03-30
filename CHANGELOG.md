@@ -25,3 +25,7 @@
 ## 0.0.7
 
 * add: refactor
+
+## 0.1.0
+
+* add: created only the image area during image creation.

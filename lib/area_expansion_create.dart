@@ -7,18 +7,20 @@ import 'package:path_provider/path_provider.dart';
 
 class AreaExpansionCreate {
   Future<String> createAndSaveCroppedImage(
-    Rect rect,
     Uint8List imageBytes,
+    Rect rect,
   ) async {
     // Load the original image
     img.Image? originalImage = img.decodeImage(imageBytes);
     if (originalImage != null) {
-      int width = originalImage.width;
-      int height = originalImage.height;
-
-      // Crop the image
-      img.Image croppedImage =
-          img.copyCrop(originalImage, x: 0, y: 0, width: width, height: height);
+      // Crop the image. Please allow for some leeway.
+      img.Image croppedImage = img.copyCrop(
+        originalImage,
+        x: rect.left.toInt() + 1,
+        y: rect.top.toInt() + 1,
+        width: rect.width.toInt() - 2,
+        height: rect.height.toInt() - 2,
+      );
 
       // Encode the new image as PNG
       List<int> croppedImageBytes = img.encodePng(croppedImage);
