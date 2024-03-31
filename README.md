@@ -14,13 +14,14 @@
 
 
 
+
 # Image
 
 <div align="center">
 
-| | |
-|---|---|
-|<img width="375" src="https://github.com/DaisukeNagata/area_expansion/assets/16457165/fcb633ab-9125-4c6e-b340-a1c3a4889e73">|<img width="375" src="https://github.com/DaisukeNagata/area_expansion/assets/16457165/143217f8-c22c-444d-808a-d6584d46cb49">|
+| |
+|---|
+|<img width="375" src="https://github.com/DaisukeNagata/area_expansion/assets/16457165/0588f0e0-37ff-4eb1-a98f-49f544dad750">|
 
 </div>
 
