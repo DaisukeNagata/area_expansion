@@ -7,12 +7,10 @@ class ImageScreen extends StatefulWidget {
   const ImageScreen({
     super.key,
     required this.imageBytes,
-    required this.rect,
     required this.path,
   });
 
   final Uint8List imageBytes;
-  final Rect rect;
   final String path;
 
   @override
@@ -22,7 +20,7 @@ class ImageScreen extends StatefulWidget {
 class _ImageScreenState extends State<ImageScreen> {
   var flg = false;
   void _shareImage() {
-    Share.shareFiles([widget.path], text: 'Check out this image!');
+    Share.shareFiles([widget.path]);
   }
 
   @override

@@ -10,11 +10,13 @@ class AreaExpansionWidget extends StatefulWidget {
     required this.call,
     required this.trimFlg,
     required this.imagePath,
+    required this.offset,
     required this.rect,
   });
   final Function(Uint8List) call;
   final bool trimFlg;
   final String imagePath;
+  final Offset offset;
   final Rect rect;
 
   @override
@@ -36,13 +38,16 @@ class _RectClipperState extends State<AreaExpansionWidget> {
   Widget build(BuildContext context) {
     return RepaintBoundary(
       key: _globalKey,
-      child: ClipPath(
-        clipper: AreaExpansion(rect: widget.rect),
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(widget.imagePath),
-              fit: BoxFit.cover,
+      child: Transform.translate(
+        offset: widget.offset, // 更新された位置に基づいて画像を移動
+        child: ClipPath(
+          clipper: AreaExpansion(offset: widget.offset, rect: widget.rect),
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(widget.imagePath),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),

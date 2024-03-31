@@ -13,15 +13,17 @@ class AreaExpansionDrag extends StatefulWidget {
     required this.trimFlg,
     required this.imagePath,
     required this.backColor,
+    required this.offset,
     required this.rect,
     required this.scale,
     required this.child,
   });
-  final Function(AreaExpansionCreate, Uint8List, Rect, String) call;
+  final Function(AreaExpansionCreate, Uint8List, String) call;
   final double minimumValue;
   final bool trimFlg;
   final String imagePath;
   final Color backColor;
+  final Offset offset;
   final Rect rect;
   final double scale;
   final Widget child;
@@ -277,12 +279,20 @@ class _AreaExpansionDragState extends State<AreaExpansionDrag> {
             AreaExpansionWidget(
               trimFlg: widget.trimFlg,
               imagePath: widget.imagePath,
-              rect: Rect.fromLTRB(
-                leftWidth,
-                topHeight,
-                rightWidth,
-                bottomHeight,
-              ),
+              offset: widget.offset,
+              rect: widget.offset == Offset.zero
+                  ? Rect.fromLTRB(
+                      leftWidth,
+                      topHeight,
+                      rightWidth,
+                      bottomHeight,
+                    )
+                  : Rect.fromLTWH(
+                      leftWidth,
+                      topHeight,
+                      constraints.maxWidth - (leftWidth + rightWidth),
+                      constraints.maxHeight - (bottomHeight + topHeight),
+                    ),
               call: (imageBytes) async {
                 Rect rect = Rect.fromLTWH(
                   leftWidth,
@@ -291,13 +301,12 @@ class _AreaExpansionDragState extends State<AreaExpansionDrag> {
                   constraints.maxHeight - (bottomHeight + topHeight),
                 );
                 var areaExpansionCreate = AreaExpansionCreate();
-
                 var path = await areaExpansionCreate.createAndSaveCroppedImage(
                     imageBytes,
                     rect,
                     Size(
                         rect.width * widget.scale, rect.height * widget.scale));
-                widget.call(areaExpansionCreate, imageBytes, rect, path);
+                widget.call(areaExpansionCreate, imageBytes, path);
               },
             ),
 

@@ -33,3 +33,7 @@
 ## 0.1.1
 
 * add: zoom function
+
+## 0.1.2
+
+* add: move function
