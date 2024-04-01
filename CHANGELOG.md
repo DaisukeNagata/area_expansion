@@ -37,3 +37,7 @@
 ## 0.1.2
 
 * add: move function
+
+## 0.2.0
+
+* update: expansion function

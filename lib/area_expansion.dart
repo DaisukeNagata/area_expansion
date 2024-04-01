@@ -4,10 +4,11 @@ class AreaExpansion extends CustomClipper<Path> {
   const AreaExpansion({
     required this.offset,
     required this.rect,
+    required this.scale,
   });
+  final double scale;
   final Offset offset;
   final Rect rect;
-
   @override
   Path getClip(Size size) {
     final path = Path();

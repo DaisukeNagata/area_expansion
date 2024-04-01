@@ -279,6 +279,7 @@ class _AreaExpansionDragState extends State<AreaExpansionDrag> {
             AreaExpansionWidget(
               trimFlg: widget.trimFlg,
               imagePath: widget.imagePath,
+              scale: widget.scale,
               offset: widget.offset,
               rect: widget.offset == Offset.zero
                   ? Rect.fromLTRB(

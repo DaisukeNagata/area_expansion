@@ -25,10 +25,10 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
-  bool _isClipped = true;
-  double _zoomScale = 1.0; // ズームレベルを管理する変数
   final String _path = 'assets/exam.jpg';
-  Offset _offset = Offset.zero; // 画像の位置を追跡するための変数
+  bool _isClipped = true;
+  double _zoomScale = 1.0;
+  Offset _offset = Offset.zero;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,22 +41,27 @@ class _HomeWidgetState extends State<HomeWidget> {
           child: Stack(
             children: [
               if (_isClipped)
-                Transform.translate(
-                  offset: _offset, // 更新された位置に基づいて画像を移動
-                  child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(_path),
-                        fit: BoxFit.cover,
+                RepaintBoundary(
+                  child: Transform.scale(
+                    alignment: Alignment.center,
+                    scale: _zoomScale,
+                    child: Transform.translate(
+                      offset: _offset,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(_path),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
               GestureDetector(
-                // パンジェスチャーを検出
                 onPanUpdate: (details) {
                   setState(() {
-                    _offset += details.delta; // 位置を更新
+                    _offset += details.delta;
                   });
                 },
                 child: AreaExpansionDrag(
@@ -102,6 +107,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       builder: (context) => ImageScreen(
                                         imageBytes: p0,
                                         path: path,
+                                        zoomScale: _zoomScale,
                                       ),
                                     ),
                                   )).then((_) async {
@@ -126,12 +132,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Slider(
-                      min: 1.0, // 最小ズームレベル
-                      max: 5.0, // 最大ズームレベル
+                      min: 1.0, // min zoom down
+                      max: 5.0, // max zoom up
                       value: _zoomScale,
                       onChanged: (value) {
                         setState(() {
-                          _zoomScale = value; // スライダーの値でズームレベルを更新
+                          _zoomScale = value;
                         });
                       },
                     ),

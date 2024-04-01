@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:area_expansion/area_expansion.dart';
+import 'package:flutter/widgets.dart';
 
 class AreaExpansionWidget extends StatefulWidget {
   const AreaExpansionWidget({
@@ -11,12 +12,14 @@ class AreaExpansionWidget extends StatefulWidget {
     required this.trimFlg,
     required this.imagePath,
     required this.offset,
+    required this.scale,
     required this.rect,
   });
   final Function(Uint8List) call;
   final bool trimFlg;
   final String imagePath;
   final Offset offset;
+  final double scale;
   final Rect rect;
 
   @override
@@ -36,17 +39,29 @@ class _RectClipperState extends State<AreaExpansionWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final scaledOffset = Offset(
+      widget.offset.dx * widget.scale,
+      widget.offset.dy * widget.scale,
+    );
     return RepaintBoundary(
       key: _globalKey,
       child: Transform.translate(
-        offset: widget.offset, // 更新された位置に基づいて画像を移動
+        offset: scaledOffset,
         child: ClipPath(
-          clipper: AreaExpansion(offset: widget.offset, rect: widget.rect),
-          child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(widget.imagePath),
-                fit: BoxFit.cover,
+          clipper: AreaExpansion(
+            scale: widget.scale,
+            offset: scaledOffset,
+            rect: widget.rect,
+          ),
+          child: Transform.scale(
+            alignment: Alignment.center,
+            scale: widget.scale,
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(widget.imagePath),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),

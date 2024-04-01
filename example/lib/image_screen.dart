@@ -8,10 +8,12 @@ class ImageScreen extends StatefulWidget {
     super.key,
     required this.imageBytes,
     required this.path,
+    required this.zoomScale,
   });
 
   final Uint8List imageBytes;
   final String path;
+  final double zoomScale;
 
   @override
   State<ImageScreen> createState() => _ImageScreenState();
@@ -49,8 +51,14 @@ class _ImageScreenState extends State<ImageScreen> {
       ),
       body: Center(
         child: flg
-            ? Image.file(File(widget.path))
-            : Image.memory(widget.imageBytes),
+            ? Image.file(
+                File(widget.path),
+                filterQuality: FilterQuality.high,
+              )
+            : Image.memory(
+                widget.imageBytes,
+                filterQuality: FilterQuality.high,
+              ),
       ),
     );
   }
