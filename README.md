@@ -15,13 +15,17 @@
 
 
 
+
+
+
+
 # Image
 
 <div align="center">
 
 | |
 |---|
-|<img width="375" src="https://github.com/DaisukeNagata/area_expansion/assets/16457165/0588f0e0-37ff-4eb1-a98f-49f544dad750">|
+|<img width="375" src="https://github.com/DaisukeNagata/area_expansion/assets/16457165/24e1066f-beb5-4f2c-a2e1-8131472883f7">|
 
 </div>
 
