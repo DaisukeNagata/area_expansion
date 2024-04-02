@@ -41,3 +41,7 @@
 ## 0.2.0
 
 * update: expansion function
+
+## 0.2.0
+
+* update: logic refactor

@@ -8,12 +8,10 @@ class ImageScreen extends StatefulWidget {
     super.key,
     required this.imageBytes,
     required this.path,
-    required this.zoomScale,
   });
 
   final Uint8List imageBytes;
   final String path;
-  final double zoomScale;
 
   @override
   State<ImageScreen> createState() => _ImageScreenState();
@@ -37,11 +35,9 @@ class _ImageScreenState extends State<ImageScreen> {
         ),
         actions: <Widget>[
           TextButton(
-              onPressed: () {
-                setState(() {
-                  flg = !flg;
-                });
-              },
+              onPressed: () => setState(() {
+                    flg = !flg;
+                  }),
               child: const Text('scale')),
           IconButton(
             icon: const Icon(Icons.share),

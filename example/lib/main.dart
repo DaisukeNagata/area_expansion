@@ -107,7 +107,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       builder: (context) => ImageScreen(
                                         imageBytes: p0,
                                         path: path,
-                                        zoomScale: _zoomScale,
                                       ),
                                     ),
                                   )).then((_) async {

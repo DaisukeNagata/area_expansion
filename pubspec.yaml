@@ -1,6 +1,6 @@
 name: area_expansion
 description: Expand an area of ​​the image.
-version: 0.2.0
+version: 0.2.1
 homepage: https://github.com/DaisukeNagata/area_expansion
 
 environment:
