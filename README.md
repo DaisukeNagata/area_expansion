@@ -7,7 +7,6 @@
 # Support Licence　
 ![iOS](https://img.shields.io/badge/OS-iOS-red) 
 ![Android](https://img.shields.io/badge/OS-Android-green) 
-![Windows](https://img.shields.io/badge/OS-Windows-blue) 
 ![macOS](https://img.shields.io/badge/OS-macOS-lightgrey) 
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://github.com/yourusername/your-repo-name/blob/main/LICENSE)
 

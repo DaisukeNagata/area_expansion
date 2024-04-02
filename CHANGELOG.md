@@ -42,6 +42,10 @@
 
 * update: expansion function
 
-## 0.2.0
+## 0.2.1
 
 * update: logic refactor
+
+## 0.2.2
+
+* update: readme refactor
