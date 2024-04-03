@@ -5,6 +5,8 @@
 
 # Introduction
 The strength of the function lies in being realized through Flutter's native features, making it easy for users to customize.
+Move the image within the area and zoom in with a slider. 
+This allows developers to choose the timing for the UI UX.
 
 
 # Support Licence　
