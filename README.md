@@ -3,6 +3,9 @@
 <img src="https://github.com/DaisukeNagata/area_expansion/assets/16457165/981f3f5c-edce-4bec-b5aa-97f127a66ee8)">
 </p>
 
+# Introduction
+The strength of the function lies in being realized through Flutter's native features, making it easy for users to customize.
+
 
 # Support Licence　
 ![iOS](https://img.shields.io/badge/OS-iOS-red) 
